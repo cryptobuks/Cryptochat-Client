@@ -1,4 +1,4 @@
-import openpgp from 'openpgp';
+var openpgp = require('openpgp');
 
 /**
  * Handles cryptography using openpgp.js
@@ -14,7 +14,9 @@ export class CryptoHandler {
             this.generateKeyPair();
         }
         // Load the private key object for en/decrypting data
-        window.privateKeyObject = openpgp.key.readArmored(window.private).keys[0];
+        window.privateKeyObject = openpgp.key.readArmored(window.ownKeys.private).keys[0];
+        // Decrypt the key
+        window.privateKeyObject.decrypt(window.ownKeys.passphrase);
     }
 
     /**
@@ -23,7 +25,7 @@ export class CryptoHandler {
      * @param {string} plaintext The message to encrypt
      * @param {function} onComplete The function that is called upon encrypting
      */
-    encrypt(publicKey, plaintext, onComplete) {
+    encrypt(publicKey, plaintext, onComplete = ()=>{}) {
         let options = {
             data: plaintext,
             publicKeys: openpgp.key.readArmored(publicKey).keys, // For encrypting
@@ -38,11 +40,11 @@ export class CryptoHandler {
     /**
      * Decrypts a ciphetext using the private keys and verifies the signature
      * with a given public key
-     * @param {String} publicKey The public key (armored) of the senter to verify
+     * @param {String} publicKey The public key (armored) of the sender to verify
      * @param {String} ciphertext The ciphertext to decrypt
      * @param {function} onComplete The function that is called upon decrypting
      */
-    decrypt(publicKey, ciphertext, onComplete) {
+    decrypt(publicKey, ciphertext, onComplete = () => {}) {
         let options = {
             message: openpgp.message.readArmored(ciphertext),
             publicKeys: openpgp.key.readArmored(publicKey).keys,
@@ -77,4 +79,23 @@ export class CryptoHandler {
             window.sessionStorage.setItem('ownkeys', JSON.stringify(window.ownKeys));
         });
     }
+
+    /**
+     * Returns own public key
+     */
+    getOwnPublicKey() {
+        return window.ownKeys.public;
+    }
+
+    storePublicKey(conversation, key) {
+        let oldKeys = [];
+        if(window.sessionStorage.getItem("public_keys") !== null) {
+            oldKeys = JSON.parse(window.sessionStorage.getItem("public_keys"));
+        }
+        oldKeys.push({
+            conversation, key
+        });
+        window.sessionStorage.setItem("public_keys", JSON.stringify(oldKeys));
+    }
+
 }

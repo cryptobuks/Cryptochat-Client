@@ -17,7 +17,8 @@ class App extends Component {
 
     // Default config
     window.config = {
-      KEY_SIZE: 2048
+      KEY_SIZE: 2048,
+      conversation: 'DEBUG'
     };
 
     this.state = {

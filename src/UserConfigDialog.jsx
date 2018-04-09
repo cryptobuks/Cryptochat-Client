@@ -11,7 +11,8 @@ export class UserConfigDialog extends Component {
     constructor(...props) {
         super(...props);
         this.state = {
-            display: 'block'
+            // display: 'block'
+            display: "none"
         };
         let ch = new CryptoHandler();
     }
