@@ -5,8 +5,6 @@ import openpgp from 'openpgp';
  */
 export class CryptoHandler {
     constructor() {
-        //openpgp.config.aead_protect = true;
-
         // Check for existing keys
         if(window.sessionStorage.getItem("ownkeys") !== null) {
             // Parse and fill into window
@@ -15,27 +13,45 @@ export class CryptoHandler {
             // No session keys yes, generate them
             this.generateKeyPair();
         }
-
         // Load the private key object for en/decrypting data
         window.privateKeyObject = openpgp.key.readArmored(window.private).keys[0];
-        await window.privateKeyObject;
     }
 
     /**
      * Encrypts a message for a specific recipient (and signs it)
      * @param {string} publicKey The public key (armored) of the recipient
-     * @param {string} message The message to encrypt
+     * @param {string} plaintext The message to encrypt
      * @param {function} onComplete The function that is called upon encrypting
      */
-    encrypt(publicKey, message, onComplete) {
+    encrypt(publicKey, plaintext, onComplete) {
         let options = {
-            data: message,
-            publicKeys: openpgp.key.readArmored(publicKey).keys,
-            privateKeys: [window.privateKeyObject]
+            data: plaintext,
+            publicKeys: openpgp.key.readArmored(publicKey).keys, // For encrypting
+            privateKeys: [window.privateKeyObject] // For signing
         };
         openpgp.encrypt(options).then(ciphertext => {
             onComplete(ciphertext);
-            console.log(ciphertext);
+            console.log(ciphertext, "encrypted");
+        });
+    }
+
+    /**
+     * Decrypts a ciphetext using the private keys and verifies the signature
+     * with a given public key
+     * @param {String} publicKey The public key (armored) of the senter to verify
+     * @param {String} ciphertext The ciphertext to decrypt
+     * @param {function} onComplete The function that is called upon decrypting
+     */
+    decrypt(publicKey, ciphertext, onComplete) {
+        let options = {
+            message: openpgp.message.readArmored(ciphertext),
+            publicKeys: openpgp.key.readArmored(publicKey).keys,
+            privateKeys: [window.privateKeyObject]
+        };
+
+        openpgp.decrypt(options).then(plaintext => {
+            onComplete(plaintext);
+            console.log(plaintext,"decrypted");
         });
     }
 
