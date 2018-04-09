@@ -1,0 +1,40 @@
+.message {
+    width: 100%;
+    margin-bottom: 0.25em;
+    padding: 1em;
+    height: 50px;
+}
+.message0 {
+}
+.message1 {
+    /* nothing */
+}
+
+.box {
+    padding: 0.5em 1em;
+    background-color: var(--var-clouds);
+}
+.content0 {
+    max-width: 50%;
+    position: absolute;
+    left: 1em;   
+}
+.content1 {
+    max-width: 50%;
+    text-align: right;
+
+    position: absolute;
+    right: 1em;
+}
+.partner {
+    color: var(--var-turquoise);
+    font-size: 10pt;
+    width: calc(100% + 2.25em);
+    background-color: rgba(1,1,1,0.03);
+    padding: auto 8em;
+    margin: -0.5em -1.125em;
+    margin-bottom: 0.5em;
+}
+.partner span {
+    margin: auto 0.5em;
+}

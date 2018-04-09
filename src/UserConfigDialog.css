@@ -1,0 +1,12 @@
+.dialog {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--var-midnight-blue);
+    text-align: left;
+    padding: 1em;
+    color:white;
+}

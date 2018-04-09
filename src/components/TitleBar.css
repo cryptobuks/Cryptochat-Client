@@ -1,0 +1,16 @@
+.titleBar {
+    background-color: var(--var-midnight-blue);
+    color: white;
+    height: 50px;
+    text-align: left;
+    padding: 5px 20px;
+}
+.logo {
+    text-align: center;
+    font-size: 22pt;
+    font-weight: bold;
+    margin: 0;padding: 0;
+    padding-top: 5px;
+    font-family: Utmavo;
+    color: var(--var-peter-river);
+}

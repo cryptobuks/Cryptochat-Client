@@ -1,0 +1,43 @@
+.inputbox {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--var-wet-asphalt);
+    height: 100px;
+    padding: 0;
+    text-align: left;
+    color: white;
+}
+.text {
+    width: 80%;
+    position: absolute;
+    height: 70%;
+    left: 10px;
+    top: 10px;
+    padding: 5px;
+    border: none;
+    margin: 0;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+.submit {
+    margin: 0;
+    padding: 5px;
+    position: absolute;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    top: 10px;
+    right: 10px;
+    width: calc(20% - 23px);
+    height: 80%;
+    border: none;
+    cursor: pointer;
+    background-color: var(--var-nephritis);
+    font-size: 16pt;
+    color: white;
+}
+.stamp {
+    margin-top: 10px;
+    font-size: 8pt;
+    opacity: 0.4;
+}
