@@ -13,6 +13,11 @@
 .box {
     padding: 0.5em 1em;
     background-color: var(--var-clouds);
+    border-radius: 7px;
+    /* border: 1px solid rgba(167, 167, 167, 0.233); */
+    -webkit-box-shadow: 6px 6px 18px -6px rgba(0,0,0,0.29);
+-moz-box-shadow: 6px 6px 18px -6px rgba(0,0,0,0.29);
+box-shadow: 6px 6px 18px -6px rgba(0,0,0,0.29);
 }
 .content0 {
     max-width: 50%;
@@ -34,6 +39,12 @@
     padding: auto 8em;
     margin: -0.5em -1.125em;
     margin-bottom: 0.5em;
+
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+.n1 {
+    color: var(--var-alizarin);
 }
 .partner span {
     margin: auto 0.5em;

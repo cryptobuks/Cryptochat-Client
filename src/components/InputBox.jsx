@@ -14,6 +14,7 @@ export class InputBox extends Component {
 
     submit() {
         this.props.onSubmit(this.state.text);
+        this.setState({text:''});
     }
 
     handleChange(value) {
@@ -26,7 +27,7 @@ export class InputBox extends Component {
         return(<div className="inputbox">
             <textarea className="text"
             onChange={this.handleChange
-            }></textarea>
+            } value={this.state.text}></textarea>
             <button className="submit"
             onClick={this.submit}>Send</button>
         </div>);

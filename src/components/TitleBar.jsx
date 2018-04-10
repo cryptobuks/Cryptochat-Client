@@ -9,7 +9,7 @@ export class TitleBar extends Component {
     render() {
         return(<div className="titleBar">
             <div className="logo">
-                CryptoChat
+                Private Chat
             </div>
         </div>);
     }

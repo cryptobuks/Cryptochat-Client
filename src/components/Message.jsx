@@ -13,7 +13,7 @@ export class Message extends Component {
     render() {
         return (<div className={"message message" + this.props.from}>
             <div className={"box content" + this.props.from}>
-                <div className="partner"><span>{this.props.name || (this.props.from === 0) ? "You" : "Partner"}</span></div>
+                <div className={"partner n"+this.props.from}><span>{this.props.name || (this.props.from === 0) ? "You" : "Partner"}</span></div>
                 {this.props.children}
                 <br />
                 <div className="stamp">{this.state.recieveTimestamp}</div>
